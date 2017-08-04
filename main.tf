@@ -15,3 +15,9 @@ resource "aws_iam_access_key" "user" {
   user    = "${aws_iam_user.user.name}"
   pgp_key = "${var.pgp_key}"
 }
+
+resource "aws_iam_user_policy" "policy" {
+  policy = "${var.policy}"
+  name   = "${var.policy_name}"
+  user   = "${aws_iam_user.user.name}"
+}
