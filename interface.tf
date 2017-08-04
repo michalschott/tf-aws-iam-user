@@ -14,6 +14,12 @@ variable "force_destroy" {
 
 variable "pgp_key" {
   description = "Either a base-64 encoded PGP public key, or a keybase username in the form keybase:username."
+  default     = ""
+}
+
+variable "policy_arns" {
+  description = "Policy ARNs to attach."
+  default     = []
 }
 
 output "user_arn" {
