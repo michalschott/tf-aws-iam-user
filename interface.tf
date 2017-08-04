@@ -22,6 +22,16 @@ variable "policy_arns" {
   default     = []
 }
 
+variable "policy" {
+  description = "The policy document."
+  default     = ""
+}
+
+variable "policy_name" {
+  description = "The name of the policy."
+  default     = ""
+}
+
 output "user_arn" {
   value       = "${aws_iam_user.user.arn}"
   description = "The ARN assigned by AWS for this user."

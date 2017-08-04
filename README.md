@@ -14,7 +14,9 @@ This simple module is designed to:
 | name | The user's name. The name must consist of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: =,.@-_.. User names are not distinguished by case. For example, you cannot create users named both "TESTUSER" and "testuser". | string | - | yes |
 | path | Path in which to create the user. | string | `/` | no |
 | pgp_key | Either a base-64 encoded PGP public key, or a keybase username in the form keybase:username. | string | `` | no |
+| policy | The policy document. | string | `` | no |
 | policy_arns | Policy ARNs to attach. | string | `<list>` | no |
+| policy_name | The name of the policy. | string | `` | no |
 
 ## Outputs
 
