@@ -11,7 +11,7 @@ resource "aws_iam_user_policy_attachment" "user_policy_attachment" {
 }
 
 resource "aws_iam_access_key" "user" {
-  count   = "${length(var.pgp_key) > 0 ? 1 : 0}"
+  count   = "${var.create_api_keys && length(var.pgp_key) > 0 ? 1 : 0}"
   user    = "${aws_iam_user.user.name}"
   pgp_key = "${var.pgp_key}"
 }
@@ -21,4 +21,10 @@ resource "aws_iam_user_policy" "policy" {
   policy = "${var.policy}"
   name   = "${var.policy_name}"
   user   = "${aws_iam_user.user.name}"
+}
+
+resource "aws_iam_user_login_profile" "user" {
+  count   = "${var.create_console_password && length(var.pgp_key) > 0 ? 1 : 0}"
+  user    = "${aws_iam_user.user.name}"
+  pgp_key = "${var.pgp_key}"
 }
