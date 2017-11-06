@@ -34,12 +34,22 @@ variable "policy_name" {
 
 variable "create_api_keys" {
   description = "Should API keys be created."
-  default = true
+  default     = true
 }
 
 variable "create_console_password" {
   description = "Should console password be set."
-  default = false
+  default     = false
+}
+
+variable "password_reset_required" {
+  description = "Whether the user should be forced to reset the generated password on first login."
+  default     = true
+}
+
+variable "password_length" {
+  description = "The length of the generated password."
+  default     = 20
 }
 
 output "user_arn" {
@@ -83,6 +93,6 @@ output "access_key_status" {
 }
 
 output "user_encrypted_password" {
-  value = "${aws_iam_user_login_profile.user.encrypted_password}"
+  value       = "${aws_iam_user_login_profile.user.encrypted_password}"
   description = "The encrypted password, base64 encoded."
 }

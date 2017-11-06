@@ -24,7 +24,9 @@ resource "aws_iam_user_policy" "policy" {
 }
 
 resource "aws_iam_user_login_profile" "user" {
-  count   = "${var.create_console_password && length(var.pgp_key) > 0 ? 1 : 0}"
-  user    = "${aws_iam_user.user.name}"
-  pgp_key = "${var.pgp_key}"
+  count                   = "${var.create_console_password && length(var.pgp_key) > 0 ? 1 : 0}"
+  user                    = "${aws_iam_user.user.name}"
+  pgp_key                 = "${var.pgp_key}"
+  password_reset_required = "${var.password_reset_required}"
+  password_length         = "${var.password_length}"
 }
