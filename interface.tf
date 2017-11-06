@@ -13,7 +13,7 @@ variable "force_destroy" {
 }
 
 variable "pgp_key" {
-  description = "Either a base-64 encoded PGP public key, or a keybase username in the form keybase:username."
+  description = "Either a base-64 encoded PGP public key, or a keybase username in the form keybase:username. Required if you want to create API keys or password."
   default     = ""
 }
 
@@ -30,6 +30,16 @@ variable "policy" {
 variable "policy_name" {
   description = "The name of the policy."
   default     = ""
+}
+
+variable "create_api_keys" {
+  description = "Should API keys be created."
+  default = true
+}
+
+variable "create_console_password" {
+  description = "Should console password be set."
+  default = false
 }
 
 output "user_arn" {
@@ -70,4 +80,9 @@ output "access_key_ses_smtp_password" {
 output "access_key_status" {
   value       = "${aws_iam_access_key.user.status}"
   description = "\"Active\" or \"Inactive\". Keys are initially active, but can be made inactive by other means."
+}
+
+output "user_encrypted_password" {
+  value = "${aws_iam_user_login_profile.user.encrypted_password}"
+  description = "The encrypted password, base64 encoded."
 }
